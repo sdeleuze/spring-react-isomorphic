@@ -29,8 +29,7 @@ configurations.all {
 }
 
 jar {
-  baseName = 'isomorphic'
-  version = '0.0.1-SNAPSHOT'
+  baseName = 'spring-react-isomorphic'
 }
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -51,7 +50,9 @@ jsx {
   destDir    = 'src/main/resources/static/output'
 }
 
-
 task wrapper(type: Wrapper) {
   gradleVersion = '2.3'
 }
+
+processResources.dependsOn('jsx')
+	
