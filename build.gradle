@@ -1,0 +1,57 @@
+buildscript {
+  ext {
+    springBootVersion = '1.2.3.RELEASE'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    classpath("io.spring.gradle:dependency-management-plugin:0.4.1.RELEASE")
+  }
+}
+
+plugins {
+  id 'net.eikehirsch.react' version '0.3.1'
+}
+
+apply plugin: 'java'
+apply plugin: 'spring-boot'
+
+configurations.all {
+  resolutionStrategy {
+    eachDependency { DependencyResolveDetails details ->
+      if (details.requested.group == 'org.springframework') {
+        details.useVersion '4.2.0.BUILD-SNAPSHOT'
+      }
+    }
+  }
+}
+
+jar {
+  baseName = 'isomorphic'
+  version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+  mavenCentral()
+}
+
+
+dependencies {
+  compile("org.springframework.boot:spring-boot-starter-web")
+  compile("org.webjars:react:0.13.1")
+  testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+jsx {
+  sourcesDir = 'src/main/resources/static/jsx'
+  destDir    = 'src/main/resources/static/output'
+}
+
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.3'
+}

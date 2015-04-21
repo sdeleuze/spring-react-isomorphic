@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Spring + React isomorphic templating</title>
+        <link href="lib/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="style.css" rel="stylesheet" />
+    </head>
+
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Spring + React isomorphic templating</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <%= React.renderToString(React.createElement(CommentForm)) %>
+                </div>
+            </div>
+        </nav>
+
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Isomorphic application</h1>
+                <p>This Spring + React application use the same views on server side and client side. Try to disable Javascript and see that he applicationd still render perfectly!</p>
+                <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+            </div>
+        </div>
+
+        <div class="container">
+            <div id="comments" class="row">
+                <%= React.renderToString(React.createElement(CommentList, { comments: comments} )) %>
+            </div>
+            <hr />
+            <footer>
+                <p>&copy; Pivotal 2015</p>
+            </footer>
+        </div>
+
+        <script src="lib/js/jquery.min.js"></script>
+        <script src="lib/js/bootstrap.min.js"></script>
+        <script src="webjars/react/0.13.1/react.js"></script>
+        <script src="output/comment.js"></script>
+        <script src="output/comment-list.js"></script>
+        <script src="output/comment-form.js"></script>
+        <script src="output/client.js"></script>
+    </body>
+</html>
