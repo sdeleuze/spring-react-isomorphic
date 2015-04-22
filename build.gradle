@@ -36,6 +36,7 @@ targetCompatibility = 1.8
 
 repositories {
   mavenCentral()
+  maven { url 'http://repo.spring.io/snapshot' }
 }
 
 
