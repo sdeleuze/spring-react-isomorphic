@@ -18,6 +18,7 @@ package io.spring.isomorphic;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 public class CommentController {
 
 	private CommentRepository commentRepository;
-	private final List<SseEmitter> sseEmitters = new ArrayList<>();
+	private List<SseEmitter> sseEmitters = Collections.synchronizedList(new ArrayList<>());
 
 	@Autowired
 	CommentController(CommentRepository commentRepository) {
@@ -50,11 +51,13 @@ public class CommentController {
 	@ResponseBody
 	Comment jsonCreate(Comment comment) throws IOException {
 		Comment newComment = this.commentRepository.save(comment);
-		for (SseEmitter sseEmitter : this.sseEmitters) {
-			// Servlet containers don't always detect ghost connection, so we must catch exceptions ...
-			try {
-				sseEmitter.send(newComment, MediaType.APPLICATION_JSON);
-			} catch (Exception e) {}
+		synchronized (this.sseEmitters) {
+			for (SseEmitter sseEmitter : this.sseEmitters) {
+				// Servlet containers don't always detect ghost connection, so we must catch exceptions ...
+				try {
+					sseEmitter.send(newComment, MediaType.APPLICATION_JSON);
+				} catch (Exception e) {}
+			}
 		}
 		return comment;
 	}
@@ -69,10 +72,14 @@ public class CommentController {
 	@RequestMapping("/sse/updates")
 	SseEmitter subscribeUpdates() {
 		SseEmitter sseEmitter = new SseEmitter();
-		this.sseEmitters.add(sseEmitter);
-		sseEmitter.onCompletion(() -> {
-			this.sseEmitters.remove(sseEmitter);
-		});
+		synchronized (this.sseEmitters) {
+			this.sseEmitters.add(sseEmitter);
+			sseEmitter.onCompletion(() -> {
+				synchronized (this.sseEmitters) {
+					this.sseEmitters.remove(sseEmitter);
+				}
+			});
+		}
 		return sseEmitter;
 	}
 
