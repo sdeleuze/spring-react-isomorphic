@@ -40,13 +40,13 @@ public class CommentController {
 		this.commentRepository = commentRepository;
 	}
 
-	@RequestMapping(value = "/", produces = "application/json")
+	@RequestMapping(path = "/", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	Iterable<Comment> jsonFindAll() {
 		return this.commentRepository.findAll();
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(path = "/", method = RequestMethod.POST, produces = "application/json")
 	@ResponseBody
 	Comment jsonCreate(Comment comment) throws IOException {
 		Comment newComment = this.commentRepository.save(comment);

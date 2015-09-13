@@ -14,4 +14,6 @@ hs_err_pid*
 build/
 node_modules/
 src/main/resources/static/output/
-
+.idea/
+.gradle/
+*.iml
