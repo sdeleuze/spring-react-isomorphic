@@ -21,7 +21,7 @@ public class IsomorphicApplication {
         return args -> {
 
             cr.save(new Comment("Brian Clozel", "This is a test!"));
-            cr.save(new Comment("Stéphan Nicoll", "This is a test too!"));
+            cr.save(new Comment("Stéphane Nicoll", "This is a test too!"));
 
             System.out.println("---------------------------------");
             cr.findAll().forEach(System.out::println);
