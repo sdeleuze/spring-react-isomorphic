@@ -1,3 +1,5 @@
+import React from 'react';
+
 var CommentForm = React.createClass({
     handleSubmit: function ( event ) {
 
@@ -29,3 +31,5 @@ var CommentForm = React.createClass({
         )
     }
 });
+
+module.exports = CommentForm;
