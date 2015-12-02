@@ -5,15 +5,20 @@ buildscript {
   repositories {
     mavenLocal()
     mavenCentral()
+    maven {
+      url "https://plugins.gradle.org/m2/"
+    }
   }
   dependencies {
     classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     classpath("io.spring.gradle:dependency-management-plugin:0.5.3.RELEASE")
+    classpath("com.moowork.gradle:gradle-node-plugin:0.11")
   }
 }
 
 apply plugin: 'java'
 apply plugin: 'spring-boot'
+apply plugin: "com.moowork.node"
 
 jar {
   baseName = 'spring-react-isomorphic'
@@ -35,4 +40,9 @@ dependencies {
 task wrapper(type: Wrapper) {
   gradleVersion = '2.3'
 }
-	
+
+npm_run {
+  args = ['webpack']
+}
+
+processResources.dependsOn('npm_run')
