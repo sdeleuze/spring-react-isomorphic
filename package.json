@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack"
+    "webpack": "webpack",
+	"watch": "webpack-dev-server --inline"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
     "babel-loader": "^5.4.0",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
-    "webpack": "^1.12.9"
+    "webpack": "^1.12.9",
+    "webpack-dev-server": "^1.14.0"
   }
 }

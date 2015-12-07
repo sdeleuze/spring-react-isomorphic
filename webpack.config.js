@@ -11,8 +11,8 @@ module.exports = {
     output: {
         path: DEST,
         filename: 'bundle.js',
-		publicPath: '/output/',
-		library: 'MyApp'
+        publicPath: '/output/',
+        library: 'MyApp'
     },
     module: {
         loaders: [
@@ -22,5 +22,17 @@ module.exports = {
                 include: SRC
             }
         ]
+    },
+    devServer: {
+        port: 9090,
+        proxy: {
+            '/*': {
+                target: 'http://localhost:8080',
+                secure: false,
+                // node-http-proxy option - don't add /localhost:8080/ to proxied request paths
+                prependPath: false
+            },
+        },
+        publicPath: 'http://localhost:9090/output/'
     }
 };
