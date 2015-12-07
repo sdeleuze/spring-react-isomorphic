@@ -21,9 +21,7 @@
                     </button>
                     <a class="navbar-brand" href="#">Spring + React isomorphic templating</a>
                 </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <%= React.renderToString(React.createElement(CommentForm)) %>
-                </div>
+                <div id="navbar" class="navbar-collapse collapse"><%= MyApp.renderCommentForm() %></div>
             </div>
         </nav>
 
@@ -36,9 +34,7 @@
         </div>
 
         <div class="container">
-            <div id="comments" class="row">
-                <%= React.renderToString(React.createElement(CommentList, { comments: comments} )) %>
-            </div>
+            <div id="comments" class="row"><%= MyApp.renderCommentList(comments) %></div>
             <hr />
             <footer>
                 <p>&copy; Pivotal 2015</p>
@@ -47,10 +43,6 @@
 
         <script src="lib/js/jquery.min.js"></script>
         <script src="lib/js/bootstrap.min.js"></script>
-        <script src="webjars/react/0.13.1/react.js"></script>
-        <script src="output/comment.js"></script>
-        <script src="output/comment-list.js"></script>
-        <script src="output/comment-form.js"></script>
-        <script src="output/client.js"></script>
+        <script src="output/bundle.js"></script>
     </body>
 </html>

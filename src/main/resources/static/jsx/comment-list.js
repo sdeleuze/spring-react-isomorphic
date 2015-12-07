@@ -1,3 +1,6 @@
+import React from 'react';
+import Comment from './comment';
+
 var CommentList = React.createClass({
     getInitialState: function () {
         return this.props;
@@ -24,3 +27,5 @@ var CommentList = React.createClass({
         )
     }
 });
+
+module.exports = CommentList;

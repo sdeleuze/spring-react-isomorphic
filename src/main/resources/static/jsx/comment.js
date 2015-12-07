@@ -1,3 +1,5 @@
+import React from 'react';
+
 var Comment = React.createClass({
     handleClick: function(event) {
         alert(this.props.content);
@@ -12,3 +14,5 @@ var Comment = React.createClass({
          )
     }
 });
+
+module.exports = Comment;
