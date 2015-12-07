@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "webpack": "webpack",
-	"watch": "webpack-dev-server --inline"
+    "webpack": "NODE_ENV=production webpack",
+    "watch": "webpack-dev-server --hot --inline"
   },
   "repository": {
     "type": "git",
@@ -21,8 +21,10 @@
   "devDependencies": {
     "babel-core": "^5.8.34",
     "babel-loader": "^5.4.0",
+    "babel-plugin-react-transform": "^1.1.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
+    "react-transform-hmr": "^1.0.1",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
   }
