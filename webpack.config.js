@@ -11,7 +11,8 @@ module.exports = {
     output: {
         path: DEST,
         filename: 'bundle.js',
-		library: 'Test'
+		publicPath: '/output/',
+		library: 'MyApp'
     },
     module: {
         loaders: [

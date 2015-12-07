@@ -22,7 +22,7 @@
                     <a class="navbar-brand" href="#">Spring + React isomorphic templating</a>
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
-					<%= Test.commentForm() %>
+					<%= MyApp.renderCommentForm() %>
                 </div>
             </div>
         </nav>
@@ -37,7 +37,7 @@
 
         <div class="container">
             <div id="comments" class="row">
-				<%= Test.commentList(comments) %>
+				<%= MyApp.renderCommentList(comments) %>
             </div>
             <hr />
             <footer>

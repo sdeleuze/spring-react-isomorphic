@@ -21,6 +21,6 @@ function renderCommentForm() {
 }
 
 module.exports = {
-  commentList: renderCommentList,
-  commentForm: renderCommentForm
+  renderCommentList: renderCommentList,
+  renderCommentForm: renderCommentForm
 };
